@@ -1,0 +1,41 @@
+{
+  "projects": {
+    "default": "pelp-dev",
+    "dev": "pelp-dev",
+    "prod": "pelp-prod"
+  },
+  "targets": {
+    "pelp-dev": {
+      "hosting": {
+        "admin": [
+          "pelp-dev-admin"
+        ],
+        "enterprise": [
+          "pelp-dev-enterprise"
+        ],
+        "vendor": [
+          "pelp-dev-vendor"
+        ],
+        "support": [
+          "pelp-dev-support"
+        ]
+      }
+    },
+    "pelp-prod": {
+      "hosting": {
+        "admin": [
+          "pelp-prod-admin"
+        ],
+        "enterprise": [
+          "pelp-prod-enterprise"
+        ],
+        "vendor": [
+          "pelp-prod-vendor"
+        ],
+        "support": [
+          "pelp-prod-support"
+        ]
+      }
+    }
+  }
+}
