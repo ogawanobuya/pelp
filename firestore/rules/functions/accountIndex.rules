@@ -1,0 +1,46 @@
+function isAccountIndex() {
+  let reqData = requestData();
+  return hasAll([
+    'id',
+    'accountId',
+    'enterpriseId',
+    'createdAt',
+    'lastEditedAt'
+  ]) && hasOnly([
+    'id',
+    'accountId',
+    'enterpriseId',
+    'createdAt',
+    'lastEditedAt'
+  ]) &&
+  reqData.id is string &&
+  reqData.accountId is string &&
+  reqData.enterpriseId is string &&
+  reqData.createdAt is timestamp &&
+  reqData.lastEditedAt is timestamp;
+}
+
+function canCreateAccountIndexEnterprise(accountIndex) {
+  let reqData = requestData();
+  let isUnique = getAfter(
+    /databases/$(database)/documents/accounts/$(reqData.accountId)
+  ).data.index == accountIndex;
+  return isAccountIndex() &&
+    isUnique &&
+    reqData.id == accountIndex;
+}
+
+function canDeleteAccountIndexEnterprise() {
+  let data = resourceData();
+  let isAccountDeleted = !existsAfter(
+    /databases/$(database)/documents/accounts/$(data.accountId)
+  );
+  return isAccountDeleted && canReadAccountIndexEnterprise();
+}
+
+
+function canReadAccountIndexEnterprise() {
+  let data = resourceData();
+  return resource == null ||
+    customClaimEnterpriseId() == data.enterpriseId;
+}

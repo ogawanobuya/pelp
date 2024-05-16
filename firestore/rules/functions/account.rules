@@ -1,0 +1,124 @@
+function isNewAccount() {
+  let reqData = requestData();
+  return hasAll(['id',
+      'enterpriseId',
+      'enterpriseName',
+      'enterpriseEmails',
+      'vendorName',
+      'vendorEmail',
+      'amount',
+      'currency',
+      'originalDueDate',
+      'newPayDate',
+      'payDate',
+      'status',
+      'statusNumber',
+      'searchMap',
+      'index',
+      'createdAt',
+      'lastEditedAt']) &&
+    hasOnly(['id',
+      'enterpriseId',
+      'enterpriseName',
+      'enterpriseEmails',
+      'vendorName',
+      'vendorEmail',
+      'amount',
+      'currency',
+      'originalDueDate',
+      'newPayDate',
+      'payDate',
+      'status',
+      'statusNumber',
+      'searchMap',
+      'index',
+      'userConfiguredId',
+      'createdAt',
+      'lastEditedAt']) &&
+    reqData.id is string &&
+    reqData.enterpriseId is string &&
+    reqData.enterpriseName is string &&
+    reqData.enterpriseEmails is list &&
+    reqData.amount is number &&
+    reqData.currency in ['jpy', 'usd', 'eur'] &&
+    reqData.originalDueDate is timestamp && reqData.originalDueDate > request.time &&
+    reqData.newPayDate is timestamp && reqData.newPayDate > request.time &&
+    reqData.originalDueDate > reqData.newPayDate &&
+    reqData.payDate is timestamp && reqData.payDate == reqData.originalDueDate &&
+    reqData.status in ['inactive', 'active', 'adjusted', 'paid', 'confirmed', 'expired'] &&
+    reqData.statusNumber is number &&
+    reqData.searchMap is map &&
+    reqData.index is string &&
+    reqData.createdAt is timestamp &&
+    reqData.lastEditedAt is timestamp &&
+    (!hasAll(['userConfiguredId']) || reqData.userConfiguredId is string);
+}
+
+function canCreateAccountEnterprise(accountId) {
+  let reqData = requestData();
+  let isValidStatus = reqData.status == 'inactive';
+  let isUnique = getAfter(
+    /databases/$(database)/documents/indices/$(reqData.enterpriseId)/accountIndices/$(reqData.index)
+  ).data.accountId == accountId;
+  return isValidStatus &&
+    isNewAccount() &&
+    isUnique &&
+    reqData.id == accountId;
+}
+
+function canDeleteAccountEnterprise() {
+  let data = resourceData();
+  let isValidStatus = data.status == 'inactive' || data.status == 'expired';
+  let isIndexDeleted = !existsAfter(
+    /databases/$(database)/documents/indices/$(data.enterpriseId)/accountIndices/$(data.index)
+  );
+  return isValidStatus &&
+    canReadAccountEnterprise() &&
+    isIndexDeleted;
+}
+
+function canUpdateAccountEnterprise() {
+  let data = resourceData();
+  let reqData = requestData();
+  let isValidAdjust = data.status == 'active' &&
+    reqData.status == 'adjusted' &&
+    hasOnlyDiff(['status', 'adjustedAt', 'lastEditedAt']) &&
+    reqData.adjustedAt is timestamp &&
+    reqData.lastEditedAt is timestamp &&
+    customClaimIsEnterpriseAdmin();
+  let isValidSetAsPaid = data.status == 'adjusted' &&
+    reqData.status == 'paid' &&
+    hasOnlyDiff(['status', 'paidAt', 'lastEditedAt']) &&
+    reqData.paidAt is timestamp &&
+    reqData.lastEditedAt is timestamp;
+  return (isValidAdjust || isValidSetAsPaid) && canReadAccountEnterprise();
+}
+
+function canUpdateAccountVendor() {
+  let data = resourceData();
+  let reqData = requestData();
+  let isValidActivate = data.status == 'inactive' &&
+    reqData.status == 'active' &&
+    reqData.vendorId == customClaimVendorId() &&
+    hasOnlyDiff(['vendorId', 'status', 'activatedAt', 'lastEditedAt']) &&
+    reqData.activatedAt is timestamp &&
+    reqData.lastEditedAt is timestamp &&
+    customClaimIsVendorAdmin();
+  let isValidConfirm = (data.status == 'adjusted' || data.status == 'paid') &&
+    reqData.status == 'confirmed' &&
+    hasOnlyDiff(['status', 'confirmedAt', 'lastEditedAt']) &&
+    reqData.confirmedAt is timestamp &&
+    reqData.lastEditedAt is timestamp;
+  return (isValidActivate || isValidConfirm) && canReadAccountVendor();
+}
+
+function canReadAccountEnterprise() {
+  let data = resourceData();
+  return equalToCustomClaimEnterpriseId(data.enterpriseId);
+}
+
+function canReadAccountVendor() {
+  let data = resourceData();
+  return containedInCustomClaimVendorEmails(data.vendorEmail) ||
+    equalToCustomClaimVendorId(data.vendorId);
+}

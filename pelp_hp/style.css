@@ -1,0 +1,849 @@
+@media screen and (max-width:1280px){
+    html {
+        min-width: 1200px;
+    }
+}
+@media screen and (max-width:1024px){
+    html {
+        min-width: 960px;
+    }
+}
+@media screen and (max-width:768px){
+    html {
+        min-width: 700px;
+    }
+}
+@media screen and (max-width:480px){
+    html {
+        min-width: inherit;
+    }
+}
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+    font-size: 100%;
+    font-weight: normal;
+    color: #000000;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: #000000;
+}
+a:hover{
+    opacity: .6;
+}
+ol, ul {
+    list-style: none;
+}
+fieldset, img {
+    border: 0;
+}
+img {
+    max-width: 100%;
+    vertical-align: bottom;
+    width: 100%;
+}
+section{
+    padding: 85px 10%;
+    text-align: center;
+}
+section .ttl{
+    display: inline-block;
+    font-size: 27px;
+    font-weight: 500;
+    background: linear-gradient(transparent 50%, #ffd902 50%);
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+@media screen and (max-width:1024px) {
+    section {
+        padding: 70px 5%;
+    }
+}
+@media screen and (max-width:480px){
+    section {
+        padding: 45px 5%;
+    }
+    section .ttl {
+        font-size: 23px;
+    }
+}
+
+/* 共通 */
+.on480{
+    display: none;
+}
+.off480{
+    display: block;
+}
+.on768{
+    display: none;
+}
+
+.c1{
+    color: #ffc238;
+}
+.c2{
+    color: #ffffff;
+}
+
+.bold{
+    font-weight: 500;
+}
+
+.contact-btn{
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #ffc238;
+    border-radius: 25px;
+    font-weight: bold;
+}
+.flex-box{
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width:768px){
+    .on480{
+        display: block;
+    }
+    .off480{
+        display: none;
+    }
+    .on768{
+        display: block;
+    }
+}
+@media screen and (max-width:480px){
+    .contact-btn{
+        font-size: 14px;
+        border-radius: 20px;
+    }
+}
+
+/* ヘッダー */
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+header .img-box{
+    width: 30%;
+    max-width: 200px;
+}
+header .menu{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width:1024px){
+    header .menu{
+        width: 65%;
+    }
+}
+@media screen and (max-width:768px){
+    header .menu{
+        display: none;
+    }
+}
+@media screen and (max-width:480px){
+    header{
+        padding: 0 10px;
+    }
+}
+
+/* フッター */
+footer{
+    text-align: center;
+    background-color: #333333;
+    padding: 20px;
+}
+footer .copy-right{
+    font-size: 12px;
+    color: #ffffff;
+}
+
+/* MV */
+.mv{
+    padding: 100px 10% 145px;
+    background-image: url(img/pelp_mv.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    text-align: left;
+}
+.mv .key-phrase{
+    font-size: 40px;
+    line-height: 1.5;
+}
+.mv .key-phrase span{
+    font-size: 50px;
+    font-weight: 700;
+}
+.mv .description{
+    margin: 40px 0 75px;
+    line-height: 1.75;
+}
+.mv .contact-btn{
+    padding: 15px 50px;
+}
+.mv .contact-btn:hover{
+    color: #ffc238;
+    border: 2px solid #ffc238;
+    background-color: #ffffff;
+    opacity: 1;
+    transition: .4s;
+}
+@media screen and (max-width:1024px){
+    .mv .description{
+        width: 450px;
+        padding: 15px;
+        border-radius: 15px;
+        background: rgba(120,120,100,0.6);
+    }
+}
+@media screen and (max-width:768px){
+    .mv{
+        text-align: center;
+    }
+    .mv .key-phrase{
+        color: #ffffff;
+        font-size: 35px;
+    }
+    .mv .key-phrase span{
+        font-size: 43px;
+    }
+    .mv .description{
+        color: #ffffff;
+        margin: 65px 0 100px;
+    }
+}
+@media screen and (max-width:480px){
+    .mv {
+        padding: 70px 10% 80px;
+        background-size: cover;
+        background-position: center;
+    }
+    .mv .key-phrase{
+        font-size: 28px;
+        line-height: 1.5;
+    }
+    .mv .key-phrase span{
+        font-size: 33px;
+    }
+    .mv .description{
+        text-align: left;
+        width: auto;
+        margin: 55px 0 60px;
+    }
+}
+
+/* Pelpとは */
+.what .flex-box{
+    align-items: center;
+}
+.what .flex-box .key-phrase{
+    width: 45%;
+    font-size: 35px;
+    line-height: 1.75;
+    text-align: left;
+}
+.what .flex-box .img-box{
+    width: 53%;
+}
+.what .flex-box  .key-phrase span{
+    font-weight: 700;
+}
+.what .description{
+    margin: 30px 0;
+    text-align: center;
+    line-height: 2.5;
+}
+@media screen and (max-width:1024px){
+    .what .flex-box .key-phrase{
+        width: 50%;
+        font-size: 32px;
+    }
+    .what .flex-box .img-box{
+        width: 50%;
+    }
+}
+@media screen and (max-width:768px){
+    .what .flex-box{
+        flex-direction: column;
+    }
+    .what .flex-box .key-phrase{
+        width: 100%;
+        text-align: center;
+    }
+    .what .flex-box .img-box{
+        width: 80%;
+    }
+}
+@media screen and (max-width:480px){
+    .what .flex-box .key-phrase{
+        font-size: 28px;
+    }
+    .what .flex-box .img-box{
+        width: 100%;
+    }
+    .what .description{
+        margin: 30px 0;
+        text-align: left;
+        line-height: 1.75;
+    }
+}
+
+/* こんな悩み、解決します */
+.trouble{
+    background-color: #444433;
+    padding: 85px 15% 20px;
+}
+.trouble .ttl{
+    background: transparent;
+    margin-bottom: 60px;
+}
+.trouble .toggle-box{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 75px;
+}
+.trouble .toggle-box .switch{
+    width: 100px;
+    margin: 0 20px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #ebd200;
+    color: #ffffff;
+}
+.trouble .toggle-box .switch.off{
+    background-color: #cccccc;
+    color: #888888;
+}
+.trouble .trouble-box{
+    width: 30%;
+}
+.trouble .trouble-box .saying{
+    position: relative;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #666655;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px 5px #222222;
+    text-align: left;
+}
+.trouble .trouble-box .saying::after{
+    content: '';
+    position: absolute;
+    background-image: url(img/trouble_mark.png);
+    width: 65px;
+    height: 80px;
+    top: -35px;
+    left: -35px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.trouble .flex-box{
+    display: none;
+}
+.trouble .flex-box.active{
+    display: flex;
+}
+@media screen and (max-width:1280px){
+    .trouble{
+        padding: 85px 10% 20px;
+    }
+}
+@media screen and (max-width:1024px){
+    .trouble {
+        padding: 70px 5% 20px;
+    }
+    .trouble .trouble-box .saying {
+        font-size: 19px;
+    }
+    .trouble .trouble-box .saying::after{
+        width: 55px;
+        height: 80px;
+        top: -30px;
+        left: -25px;
+    }
+}
+@media screen and (max-width:768px){
+    .trouble .flex-box{
+        flex-direction: column;
+        align-items: center;
+    }
+    .trouble .trouble-box {
+        width: 40%;
+        margin-bottom: 20px;
+    }
+    .trouble .trouble-box:nth-of-type(3) {
+        margin-bottom: 0;
+    }
+}
+@media screen and (max-width:480px){
+    .trouble .toggle-box .switch {
+        margin: 0 10px;
+    }
+    .trouble .trouble-box {
+        width: 80%;
+    }
+    .trouble .trouble-box .img-box{
+    width: 80%;
+    margin: auto;
+    }
+}
+
+/* Pelpと実現する新しいファイナンス */
+.service .flex-box{
+    padding-top: 50px;
+}
+.service .flex-box .service-box{
+    position: relative;
+    width: 23%;
+}
+.service .flex-box .service-box .number-box{
+    width: 40px;
+    margin-bottom: 5px;
+}
+.service .flex-box .service-box .head{
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: left;
+}
+@media screen and (max-width:1280px){
+    .service{
+        padding: 85px 5%;
+    }
+}
+@media screen and (max-width:1024px){
+    .service .flex-box .service-box .number-box{
+        width: 35px;
+    }
+    .service .flex-box .service-box .head {
+        font-size: 19px;
+    }
+}
+@media screen and (max-width:768px){
+    .service .flex-box{
+        flex-direction: column;
+        align-items: center;
+    }
+    .service .flex-box .service-box{
+        width: 50%;
+        margin-bottom: 40px;
+    }
+    .service .flex-box .service-box:nth-of-type(4){
+        margin-bottom: 0;
+    }
+}
+@media screen and (max-width:480px){
+    .service .flex-box {
+        padding-top: 20px;
+    }
+    .service .flex-box .service-box {
+        width: 80%;
+    }
+}
+
+/* 導入のメリット */
+.merit{
+    background-color: #fff4b3;
+}
+.merit .flex-box{
+    padding-top: 50px;
+}
+.merit .flex-box .merit-box{
+    position: relative;
+    width: 30%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 50px 30px 30px 30px;
+    text-align: left;
+}
+.merit .flex-box .merit-box::after{
+    content: '';
+    position: absolute;
+    width: 125px;
+    height: 30px;
+    top: -15px;
+    left: -25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.merit .flex-box .merit-box:nth-of-type(1)::after{
+    background-image: url(img/point_1.png);
+}
+.merit .flex-box .merit-box:nth-of-type(2)::after{
+    background-image: url(img/point_2.png);
+}
+.merit .flex-box .merit-box:nth-of-type(3)::after{
+    background-image: url(img/point_3.png);
+}
+.merit .flex-box .merit-box .description{
+    font-size: 23px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+.merit .flex-box .merit-box .description span{
+    font-weight: 700;
+}
+@media screen and (max-width:1024px){
+    .merit .flex-box .merit-box .description {
+        font-size: 21px;
+    }
+}
+@media screen and (max-width:768px){
+    .merit .flex-box{
+        flex-direction: column;
+        align-items: center;
+    }
+    .merit .flex-box .merit-box{
+        width: 50%;
+        margin-bottom: 50px;
+    }
+    .merit .flex-box .merit-box:nth-of-type(3){
+        margin-bottom: 0;
+    }
+    .merit .flex-box .merit-box .description {
+        font-size: 23px;
+    }
+}
+@media screen and (max-width:480px){
+    .merit .flex-box {
+        padding-top: 20px;
+    }
+    .merit .flex-box .merit-box {
+        width: 85%;
+    }
+}
+
+/* 料金プラン */
+.price{
+    background-color: #eeeeee;
+}
+.price .flex-box{
+    justify-content: center;
+    padding-top: 50px;
+    margin-bottom: 80px;
+}
+.price .flex-box .price-box{
+    position: relative;
+    width: 30%;
+    margin: 0 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+}
+.price .flex-box .price-box .head{
+    position: absolute;
+    width: 100%;
+    font-size: 22px;
+    font-weight: 500;
+    color: #ffffff;
+    top: 0;
+    left: 0;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 20px 20px 0 0;
+}
+.price .flex-box .price-box:nth-of-type(1) .head{
+    background-color: #ffc238;
+}
+.price .flex-box .price-box:nth-of-type(2) .head{
+    background-color: #3e7eff;
+}
+.price .flex-box .price-box .message{
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 25px;
+}
+.price .flex-box .price-box .big-message{
+    font-weight: 700;
+    color: #ffc238;
+}
+.price .flex-box .price-box:nth-of-type(1) .big-message{
+    font-size: 95px;
+    line-height: 1.15;
+    margin-top: 20px;
+}
+.price .flex-box .price-box:nth-of-type(2) .big-message{
+    font-size: 120px;
+}
+.price .flex-box .price-box:nth-of-type(2) .big-message span{
+    font-size: 70px;
+}
+.price .flex-box .price-box:nth-of-type(2) .description{
+    margin-top: 15px;
+    text-align: left;
+    font-size: 14px;
+}
+.price .contact-btn{
+    padding: 15px 50px;
+}
+.price .contact-btn:hover{
+    color: #ffc238;
+    border: 2px solid #ffc238;
+    background-color: #ffffff;
+    opacity: 1;
+    transition: .4s;
+}
+@media screen and (max-width:1024px){
+    .price .flex-box .price-box .message {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width:768px){
+    .price .flex-box {
+        flex-direction: column;
+        align-items: center;
+    }
+    .price .flex-box .price-box{
+        width: 55%;
+        margin-bottom: 50px;
+    }
+    .price .flex-box .price-box:nth-of-type(2){
+        margin-bottom: 0;
+    }
+}
+@media screen and (max-width:480px){
+    .price {
+        padding: 45px 5% 75px;
+    }
+    .price .flex-box {
+        padding-top: 25px;
+    }
+    .price .flex-box .price-box {
+        width: 70%;
+    }
+}
+
+/* ご利用の流れ */
+.flow .flow-box{
+    padding-top: 30px;
+}
+.flow .flow-box .step{
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 22px;
+    margin: auto;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.flow .flow-box .step.start{
+    width: 60%;
+    background-color: #666666;
+    padding: 15px;
+}
+.flow .flow-box .step.end{
+    width: 80%;
+    background-color: #ffc238;
+    padding: 25px;
+}
+.flow .flow-box .arrow-box{
+    width: 50px;
+    margin: 20px auto;
+}
+.flow .flow-box .step-block{
+    padding: 50px 30px;
+    background-color: #fff8cd;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 30px;
+    margin: auto;
+    box-sizing: border-box;
+}
+.flow .flow-box .step-block .step-box{
+    width: 30%;
+    background-color: #ffffff;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: left;
+}
+.flow .flow-box .step-block .step-box .head{
+    font-size: 22px;
+    font-weight: 500;
+}
+.flow .flow-box .step-block .step-box .head img{
+    width: 30px;
+    margin-right: 10px;
+}
+.flow .flow-box .step-block .step-box .description{
+    margin-top: 10px;
+}
+@media screen and (max-width:768px){
+    .flow .flow-box .step{
+        font-size: 18px;
+    }
+    .flow .flow-box .step.end{
+        width: 70%;
+        padding: 20px;
+    }
+    .flow .flow-box .step-block{
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .flow .flow-box .step-block .step-box{
+        width: 80%;
+        margin-bottom: 30px;
+    }
+    .flow .flow-box .step-block .step-box:nth-of-type(3){
+        margin-bottom: 0;
+    }
+}
+@media screen and (max-width:480px){
+    .flow .flow-box .step-block {
+        width: 100%;
+    }
+    .flow .flow-box .step-block .step-box {
+        width: 95%;
+    }
+    .flow .flow-box .step.end {
+        width: 100%;
+        font-size: 16px;
+    }
+    .flow .flow-box .arrow-box {
+        width: 35px;
+        margin: 15px auto;
+    }
+}
+
+/* お問い合わせ */
+.contact{
+    background-color: #fff8cd;
+}
+.contact .contact-box{
+    width: 80%;
+    margin: 50px auto 0;
+    background-color: #ffffff;
+    padding: 70px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+.contact .contact-box .flex-box{
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: left;
+}
+.contact .contact-box .flex-box:nth-of-type(6){
+    align-items: flex-start;
+}
+.contact .contact-box .flex-box .left{
+    width: 40%;
+}
+.contact .contact-box .flex-box .left .head{
+    font-size: 18px;
+}
+.contact .contact-box .flex-box .left .head span{
+    color: red;
+}
+.contact .contact-box .flex-box .right{
+    width: 60%;
+}
+.contact .contact-box .flex-box .right input,.contact .contact-box .flex-box .right textarea{
+    width: 100%;
+    padding: 25px 15px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: 1px solid #aaaaaa;
+}
+.contact .contact-box .flex-box .right textarea{
+    padding: 15px;
+    line-height: 1.5;
+}
+.contact .contact-box .submit{
+    font-size: 18px;
+    border: 1px solid #ffc238;
+    color: #ffffff;
+    background-color: #ffc238;
+    border-radius: 25px;
+    font-weight: bold;
+    padding: 15px 60px;
+    cursor: pointer;
+}
+.contact .contact-box .submit:hover{
+    color: #ffc238;
+    border: 2px solid #ffc238;
+    background-color: #ffffff;
+    opacity: 1;
+    transition: .4s;
+}
+@media screen and (max-width:768px){
+    .contact .contact-box{
+        padding: 50px;
+    }
+    .contact .contact-box .flex-box{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .contact .contact-box .flex-box .left{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .contact .contact-box .flex-box .right{
+        width: 100%;
+    }
+}
+@media screen and (max-width:480px){
+    .contact .contact-box{
+        width: 100%;
+        margin: 0;
+        padding: 45px 35px;
+    }
+    .contact .contact-box .flex-box .right input,.contact .contact-box .flex-box .right textarea {
+        padding: 15px;
+    }
+}
+
+/* 送信完了画面 */
+.complete{
+    padding: 60px 10% 120px;
+    text-align: center;
+}
+.complete .head{
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+.complete .head img{
+    width: 50px;
+    margin-right: 20px;
+}
+.complete .description{
+    margin-bottom: 80px;
+    line-height: 1.75;
+}
+.complete .back{
+    font-size: 18px;
+    border: 1px solid #ffc238;
+    color: #ffffff;
+    background-color: #ffc238;
+    border-radius: 25px;
+    font-weight: bold;
+    padding: 15px 60px;
+    cursor: pointer;
+}
+.complete .back:hover{
+    color: #ffc238;
+    border: 2px solid #ffc238;
+    background-color: #ffffff;
+    opacity: 1;
+    transition: .4s;
+}
+@media screen and (max-width:480px){
+    .complete .head{
+        font-size: 35px;
+    }
+    .complete .head img {
+        width: 45px;
+        margin-right: 15px;
+    }
+}

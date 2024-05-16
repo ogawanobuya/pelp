@@ -1,0 +1,50 @@
+match /accounts/{accountId} {
+  allow read: if isAdmin() || canReadAccountEnterprise() || canReadAccountVendor();
+  allow create: if isAdmin() || canCreateAccountEnterprise(accountId);
+  allow delete: if isAdmin() || canDeleteAccountEnterprise();
+  allow update: if isAdmin() || canUpdateAccountEnterprise() || canUpdateAccountVendor();
+}
+
+match /indices/{enterpriseId} {
+  allow read, write: if isAdmin();
+}
+
+match /indices/{enterpriseId}/accountIndices/{accountIndex} {
+  allow read: if isAdmin() || canReadAccountIndexEnterprise();
+  allow create: if isAdmin() || canCreateAccountIndexEnterprise(accountIndex);
+  allow delete: if isAdmin() || canDeleteAccountIndexEnterprise();
+  allow update: if isAdmin();
+}
+
+match /enterpriseUserGroups/{enterpriseId} {
+  allow read: if isAdmin() || canReadEnterpriseGroup(enterpriseId);
+  allow create, delete: if isAdmin();
+  allow update: if isAdmin() || canUpdateEnterpriseGroup(enterpriseId);
+}
+
+match /enterpriseUserGroups/{enterpriseId}/users/{authUserId} {
+  allow read: if isAdmin() || canReadEnterpriseUser(enterpriseId, authUserId);
+  allow create: if isAdmin() || canCreateEnterpriseUser(enterpriseId);
+  allow update: if isAdmin() || canUpdateEnterpriseUser(enterpriseId, authUserId);
+  allow delete: if isAdmin() || canDeleteEnterpriseUser(enterpriseId, authUserId);
+}
+
+match /vendorUserGroups/{vendorId} {
+  allow read: if isAdmin() || canReadVendorGroup(vendorId);
+  allow create, delete: if isAdmin();
+  allow update: if isAdmin() || canUpdateVendorGroup(vendorId);
+}
+
+match /vendorUserGroups/{vendorId}/users/{authUserId} {
+  allow read: if isAdmin() || canReadVendorUser(vendorId, authUserId);
+  allow create: if isAdmin() || canCreateVendorUser(vendorId);
+  allow update: if isAdmin() || canUpdateVendorUser(vendorId, authUserId);
+  allow delete: if isAdmin() || canDeleteVendorUser(vendorId, authUserId);
+}
+
+match /configs/{configId} {
+  allow read;
+  allow create: if isAdmin();
+  allow update: if isAdmin();
+  allow delete: if isAdmin();
+}

@@ -1,0 +1,80 @@
+function isAdmin() {
+  return request.auth.token.keys().hasAll(['admin']) &&
+    request.auth.token.admin;
+ }
+
+// 警告回避のためコメントアウト
+// function isAuthenticated() {
+//   return request.auth != null;
+// }
+
+// function authEmail() {
+//   return request.auth.token.email;
+// }
+
+function authUid() {
+  return request.auth.uid;
+}
+
+function customClaimEnterpriseId() {
+  return request.auth.token.enterpriseId;
+}
+
+function equalToCustomClaimEnterpriseId(value) {
+  return request.auth.token.enterpriseId == value;
+}
+
+function customClaimIsEnterpriseAdmin() {
+  return request.auth.token.keys().hasAll(['isEnterpriseAdmin']) &&
+    request.auth.token.isEnterpriseAdmin;
+}
+
+// function customClaimIsEnterpriseRole() {
+  // return request.auth.token.enterpriseRole;
+// }
+
+function customClaimVendorId() {
+  return request.auth.token.vendorId;
+}
+
+function equalToCustomClaimVendorId(value) {
+  return request.auth.token.vendorId == value;
+}
+
+function customClaimIsVendorAdmin() {
+  return request.auth.token.keys().hasAll(['isVendorAdmin']) &&
+    request.auth.token.isVendorAdmin;
+}
+
+// function customClaimVendorEmails() {
+//   return request.auth.token.vendorEmails;
+// }
+
+function containedInCustomClaimVendorEmails(value) {
+  return value in request.auth.token.vendorEmails;
+}
+
+// function customClaimIsVendorRole() {
+//   return request.auth.token.vendorRole;
+// }
+
+function hasAll(keys) {
+  return request.resource.data.keys().hasAll(keys);
+}
+
+function hasOnly(keys) {
+  return request.resource.data.keys().hasOnly(keys);
+}
+
+function hasOnlyDiff(keys) {
+  return request.resource.data.diff(resource.data)
+    .affectedKeys().hasOnly(keys);
+}
+
+function requestData() {
+  return request.resource.data;
+}
+
+function resourceData() {
+  return resource.data;
+}

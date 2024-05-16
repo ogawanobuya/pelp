@@ -1,0 +1,64 @@
+function canReadEnterpriseGroup(enterpriseId) {
+  return enterpriseId == customClaimEnterpriseId();
+}
+
+function canUpdateEnterpriseGroup(enterpriseId) {
+  let reqData = requestData();
+  return 
+  hasOnlyDiff(['name', 'lastEditedAt']) &&
+    (!hasAll(['name']) || reqData.name is string) &&
+    reqData.lastEditedAt is timestamp &&
+    canReadEnterpriseGroup(enterpriseId) &&
+    customClaimIsEnterpriseAdmin();
+}
+
+function canReadEnterpriseUser(enterpriseId, authUserId) {
+  return customClaimIsEnterpriseAdmin() ||
+    (canReadEnterpriseGroup(enterpriseId) && authUserId == authUid());
+}
+
+function canCreateEnterpriseUser(enterpriseId) {
+  let reqData = requestData();
+  return hasAll([
+      'id',
+      'email',
+      'isGroupAdmin',
+      'role',
+      'createdAt',
+      'lastEditedAt']) &&
+    hasOnly([
+      'id',
+      'email',
+      'isGroupAdmin',
+      'role',
+      'createdAt',
+      'lastEditedAt']) &&
+    reqData.id is string &&
+    reqData.email is string &&
+    reqData.isGroupAdmin is bool &&
+    reqData.role is list &&
+    reqData.createdAt is timestamp &&
+    reqData.lastEditedAt is timestamp &&
+    canReadEnterpriseGroup(enterpriseId) &&
+    customClaimIsEnterpriseAdmin();
+}
+
+function canUpdateEnterpriseUser(enterpriseId, authUserId) {
+  let reqData = requestData();
+  return (
+      (authUid() == authUserId &&
+        hasOnlyDiff(['role', 'lastEditedAt'])) ||
+      (authUid() != authUserId &&
+        hasOnlyDiff(['role', 'lastEditedAt', 'isGroupAdmin']))
+    ) &&
+    (!hasAll(['role']) || reqData.role is list) &&
+    (!hasAll(['isGroupAdmin']) || reqData.isGroupAdmin is bool) &&
+    canReadEnterpriseGroup(enterpriseId) &&
+    customClaimIsEnterpriseAdmin();
+}
+
+function canDeleteEnterpriseUser(enterpriseId, authUserId) {
+  return enterpriseId == customClaimEnterpriseId() &&
+    customClaimIsEnterpriseAdmin() &&
+    authUserId != authUid();
+}

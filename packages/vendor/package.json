@@ -1,0 +1,63 @@
+{
+  "name": "pelp-vendor",
+  "version": "0.0.1",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": {
+    "name": "Pelp",
+    "url": "https://pelpfinance.com"
+  },
+  "scripts": {
+    "build:development": "rm -rf ./build && dotenv -e .env.dev craco build",
+    "build:production": "rm -rf ./build && GENERATE_SOURCEMAP=false dotenv -e .env.prod craco build",
+    "depcheck": "npm-check -u -E",
+    "deploy:development": "yarn run build:development && firebase deploy --project dev --only hosting:vendor",
+    "deploy:production": "yarn run build:production && firebase deploy --project prod --only hosting:vendor",
+    "fix": "yarn run lint:fix && yarn run format",
+    "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\" --config ../../.prettierrc",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "dotenv -e .env.local craco start --project dev"
+  },
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
+  },
+  "dependencies": {
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
+    "@mui/icons-material": "5.10.15",
+    "@mui/lab": "5.0.0-alpha.109",
+    "@mui/material": "5.10.15",
+    "@mui/styles": "5.10.15",
+    "@mui/x-date-pickers": "5.0.9",
+    "date-fns": "2.29.3",
+    "firebase": "9.13.0",
+    "nprogress": "0.2.0",
+    "pelp-repositories": "*",
+    "prop-types": "15.8.1",
+    "react": "18.2.0",
+    "react-custom-scrollbars-2": "4.5.0",
+    "react-date-range": "1.4.0",
+    "react-dom": "18.2.0",
+    "react-helmet-async": "1.3.0",
+    "react-router": "6.4.3",
+    "react-router-dom": "6.4.3",
+    "react-scripts": "5.0.1",
+    "recoil": "0.7.6"
+  },
+  "devDependencies": {
+    "@types/react": "18.0.25",
+    "@types/react-date-range": "1.4.4",
+    "@types/react-dom": "18.0.9",
+    "@types/react-router-dom": "5.3.3"
+  }
+}

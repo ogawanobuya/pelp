@@ -1,0 +1,63 @@
+function canReadVendorGroup(vendorId) {
+  return vendorId == customClaimVendorId();
+}
+
+function canUpdateVendorGroup(vendorId) {
+  let reqData = requestData();
+  return hasOnlyDiff(['name', 'lastEditedAt']) &&
+    (!hasAll(['name']) || reqData.name is string) &&
+    reqData.lastEditedAt is timestamp &&
+    canReadVendorGroup(vendorId) &&
+    customClaimIsVendorAdmin();
+}
+
+function canReadVendorUser(vendorId, authUserId) {
+  return customClaimIsVendorAdmin() ||
+    (canReadVendorGroup(vendorId) && authUserId == authUid());
+}
+
+function canCreateVendorUser(vendorId) {
+  let reqData = requestData();
+  return hasAll([
+      'id',
+      'email',
+      'isGroupAdmin',
+      'role',
+      'createdAt',
+      'lastEditedAt']) &&
+    hasOnly([
+      'id',
+      'email',
+      'isGroupAdmin',
+      'role',
+      'createdAt',
+      'lastEditedAt']) &&
+    reqData.id is string &&
+    reqData.email is string &&
+    reqData.isGroupAdmin is bool &&
+    reqData.role is list &&
+    reqData.createdAt is timestamp &&
+    reqData.lastEditedAt is timestamp &&
+    canReadVendorGroup(vendorId) &&
+    customClaimIsVendorAdmin();
+}
+
+function canUpdateVendorUser(vendorId, authUserId) {
+  let reqData = requestData();
+  return (
+      (authUid() == authUserId &&
+        hasOnlyDiff(['role', 'lastEditedAt'])) ||
+      (authUid() != authUserId &&
+        hasOnlyDiff(['role', 'lastEditedAt', 'isGroupAdmin']))
+    ) &&
+    (!hasAll(['role']) || reqData.role is list) &&
+    (!hasAll(['isGroupAdmin']) || reqData.isGroupAdmin is bool) &&
+    canReadVendorGroup(vendorId) &&
+    customClaimIsVendorAdmin();
+}
+
+function canDeleteVendorUser(vendorId, authUserId) {
+  return vendorId == customClaimVendorId() &&
+    customClaimIsVendorAdmin() &&
+    authUserId != authUid();
+}
